@@ -1,10 +1,11 @@
 import React from "react";
-import ProductsPage from "./Pages/ProductsPage/ProductsPage";
+import Router from "./Routes/Router";
+
 
 function App() {
   return (
     <div>
-      <ProductsPage></ProductsPage>
+      <Router/>
     </div>
   );
 }
