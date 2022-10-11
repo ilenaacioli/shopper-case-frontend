@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Header from '../Components/Header/Header'
 import AdminLoginPage from '../Pages/AdminLoginPage/AdminLoginPage'
 import AdminPage from '../Pages/AdminPage/AdminPage'
 import ErrorPage from '../Pages/ErrorPage/ErrorPage'
@@ -10,6 +11,7 @@ import ProductsPage from '../Pages/ProductsPage/ProductsPage'
 function Router() {
   return (
     <BrowserRouter>
+    <Header/>
     <Routes>
         <Route index exact path ="/" element={<Home/>}/>
         <Route path ="/loginAdmin" element={<AdminLoginPage/>}/>
