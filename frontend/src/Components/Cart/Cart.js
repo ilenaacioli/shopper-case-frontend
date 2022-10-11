@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { ContainerCartItem } from "./Cart-styled"
 import axios from 'axios'
 import { BASE_URL } from '../../Constants/Urls'
+import { makeAnOrder } from "../../Services/Orders"
+import useForm from '../../Hooks/useForm'
 
 function Cart(props) {
   const { cart, addToCart, removeFromCart } = props
   const [total, setTotal] = useState(0)
-  const [userName, setUserName] = useState("")
-  const [deliveryDate, setDeliveryDate] = useState("")
+
+  const { form, onChange, cleanFields } = useForm({ userName: "", deliveryDate: "" })
 
   const calculateTotal = () => {
     let total = 0
@@ -24,32 +26,9 @@ function Cart(props) {
     calculateTotal()
   }, [cart])
 
-  const onChangeUserName = (event) => {
-    setUserName(event.target.value)
-  }
-
-  const onChangeDeliveryDate = (event) => {
-    setDeliveryDate(event.target.value)
-  }
-
-  const makeAnOrder = () => {
-    const body ={
-      userName: userName,
-    deliveryDate: deliveryDate,
-    products: 
-        cart
-    
-    }
-    console.log(body)
-
-    axios.post(`${BASE_URL}/orders`,body)
-    .then((res) => {
-        console.log(res.data)
-    })
-    .catch((err) => {
-        console.log(err.response.data.message)
-    })
-   
+  const onSubmitForm = (event) => {
+    event.preventDefault()
+    makeAnOrder(form,cart)
   }
 
   const showCartItems = cart?.map((item) => {
@@ -64,20 +43,23 @@ function Cart(props) {
     )
   })
 
-  console.log(cart)
-
   return (
     <div>
       <h2>Cart</h2>
       {showCartItems}
       <p>Total: {total.toFixed(2)}</p>
-      <input placeholder='nome'
-        value={userName}
-        onChange={onChangeUserName} />
-      <input type='date'
-        value={deliveryDate}
-        onChange={onChangeDeliveryDate} />
-      <button onClick={makeAnOrder}>Fazer pedido</button>
+
+      <form onSubmit={onSubmitForm}>
+        <input name={"userName"}
+          placeholder='nome'
+          value={form.userName}
+          onChange={onChange} />
+        <input name={"deliveryDate"}
+          type='date'
+          value={form.deliveryDate}
+          onChange={onChange} />
+        <button >Fazer pedido</button>
+      </form>
     </div>
   )
 }
