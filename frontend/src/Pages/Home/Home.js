@@ -6,7 +6,6 @@ function Home() {
 
   const navigate = useNavigate()
 
-  
   return (
     <div>
       <h2>Home</h2>

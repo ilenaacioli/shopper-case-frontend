@@ -49,8 +49,6 @@ function ProductsPage() {
 
             setCart(newCart)
         }
-
-        console.log("carrinho", cart)
     }
 
     const removeFromCart = (productToRemove) => {
