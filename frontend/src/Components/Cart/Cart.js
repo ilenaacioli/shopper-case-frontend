@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ContainerCartItem, ContainerCartSection } from "./Cart-styled"
+import { ContainerCartItem, ContainerCartSection, ItemSection, ButtonAdd, ButtonRemove, ProductName, OrderButton } from "./Cart-styled"
 import { makeAnOrder } from "../../Services/Orders"
 import useForm from '../../Hooks/useForm'
 import GlobalContext from '../../Global/GlobalContext'
 
 function Cart(props) {
-   const {  addToCart, removeFromCart } = props
+  const { addToCart, removeFromCart } = props
   const { cart, setCart } = useContext(GlobalContext)
   const [total, setTotal] = useState(0)
 
@@ -28,17 +28,20 @@ function Cart(props) {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    makeAnOrder(form,cart)
+    makeAnOrder(form, cart)
   }
 
   const showCartItems = cart?.map((item) => {
     return (
       <ContainerCartItem key={item.name}>
-        <p>{item.name}</p>
-        <p>{item.price}</p>
-        <button onClick={() => addToCart(item)}>+</button>
-        <p>{item.quantity}</p>
-        <button onClick={() => removeFromCart(item)}>-</button>
+
+        <ProductName>{item.name}</ProductName>
+        <p>R$ {item.price}</p>
+        <div>
+          <ButtonAdd onClick={() => addToCart(item)}>+</ButtonAdd>
+          <p>{item.quantity}</p>
+          <ButtonRemove onClick={() => removeFromCart(item)}>-</ButtonRemove>
+        </div>
       </ContainerCartItem>
     )
   })
@@ -46,19 +49,21 @@ function Cart(props) {
   return (
     <ContainerCartSection>
       <h2>Carrinho</h2>
-      {showCartItems}
-      <p>Total: {total.toFixed(2)}</p>
+      <ItemSection>
+        {showCartItems}
+      </ItemSection>
+      <h2>Total: R$ {total.toFixed(2)}</h2>
 
       <form onSubmit={onSubmitForm}>
         <input name={"userName"}
-          placeholder='nome'
+          placeholder='Nome'
           value={form.userName}
           onChange={onChange} />
         <input name={"deliveryDate"}
           type='date'
           value={form.deliveryDate}
           onChange={onChange} />
-        <button >Fazer pedido</button>
+        <OrderButton>Fazer pedido</OrderButton>
       </form>
     </ContainerCartSection>
   )
