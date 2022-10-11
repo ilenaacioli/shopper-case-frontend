@@ -1,26 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Cart from '../../Components/Cart/Cart'
 import ProductCard from '../../Components/ProductCard/ProductCard'
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { BASE_URL } from "../../Constants/Urls"
-import { ContainerProducPage, ContainerProducts } from "./ProductsPage-styled"
+import { ContainerProducPage, ContainerProducts, CardDiv } from "./ProductsPage-styled"
+import shoppingBasket from "../../Assets/shopping-basket.png"
+import GlobalContext from '../../Global/GlobalContext'
 
 
 function ProductsPage() {
-    const [products, setProducts] = useState([])
-    const [cart, setCart] = useState([])
+    const { cart, setCart, products, setProducts, loading, setLoading } = useContext(GlobalContext)
     const [searchInput, setSearchInput] = useState('')
+    // const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/products`)
-            .then((res) => {
-                setProducts(res.data.products)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [])
+        const newCart = JSON.parse(localStorage.getItem("cart"))
+        setCart(newCart)
+      }, [])
+
+    // useEffect(() => {
+    //     axios.get(`${BASE_URL}/products`)
+    //         .then((res) => {
+    //             setProducts(res.data.products)
+    //             setLoading(false)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //             setLoading(false)
+    //         })
+    // }, [])
 
     const onChangeSearch = (event) => {
         setSearchInput(event.target.value)
@@ -36,6 +45,7 @@ function ProductsPage() {
             newCart[foundIndex].quantity += 1
 
             setCart(newCart)
+            localStorage.setItem("cart", JSON.stringify(newCart))
         } else {
             const newCart = [...cart]
             const newProduct = {
@@ -48,6 +58,7 @@ function ProductsPage() {
             newCart.push(newProduct)
 
             setCart(newCart)
+            localStorage.setItem("cart", JSON.stringify(newCart))
         }
     }
 
@@ -63,6 +74,7 @@ function ProductsPage() {
             })
 
             setCart(newCart)
+            localStorage.setItem("cart", JSON.stringify(newCart))
 
         } else {
             const newCart = cart.filter((product) => {
@@ -70,6 +82,7 @@ function ProductsPage() {
             })
 
             setCart(newCart)
+            localStorage.setItem("cart", JSON.stringify(newCart))
         }
     }
 
@@ -87,21 +100,47 @@ function ProductsPage() {
         )
     })
 
-    return (
+    
+    const showProductsSection = ()=>{
+        if (loading) {
+            return(<p>Página carregando</p>)
+        } else if (showProductsCard.length===0) {
+            return(<p>Produto não encontrado :(</p>)
+        } else {
+            return (
+                <CardDiv>{showProductsCard}</CardDiv>
+                )
+            }
+        }
+        
+        const showCartSection = () => {
+            if (cart.length === 0) {
+                return (
+                    <div>
+                        <img src={shoppingBasket}/>
+                    </div>
+                )
+            }
+            else {
+                return (<div>
+                    <Cart
+                        cart={cart}
+                        setCart={setCart}
+                        addToCart={addToCart}
+                        removeFromCart={removeFromCart}
+                    />
+                </div>)
+            }
+        }
+        return (
         <ContainerProducPage>
             <ContainerProducts>
-                <input value={searchInput} onChange={onChangeSearch} />
+                <input value={searchInput} onChange={onChangeSearch} placeholder="Busca"/>
                 <div>
-                    {showProductsCard}
+                    {showProductsSection()}
                 </div>
             </ContainerProducts>
-            <div>
-                <Cart
-                    cart={cart}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                />
-            </div>
+            {showCartSection()}
         </ContainerProducPage>
     )
 }

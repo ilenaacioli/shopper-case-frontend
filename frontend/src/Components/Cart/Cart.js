@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { ContainerCartItem } from "./Cart-styled"
-import axios from 'axios'
-import { BASE_URL } from '../../Constants/Urls'
+import React, { useContext, useEffect, useState } from 'react'
+import { ContainerCartItem, ContainerCartSection } from "./Cart-styled"
 import { makeAnOrder } from "../../Services/Orders"
 import useForm from '../../Hooks/useForm'
+import GlobalContext from '../../Global/GlobalContext'
 
 function Cart(props) {
-  const { cart, addToCart, removeFromCart } = props
+   const {  addToCart, removeFromCart } = props
+  const { cart, setCart } = useContext(GlobalContext)
   const [total, setTotal] = useState(0)
 
   const { form, onChange, cleanFields } = useForm({ userName: "", deliveryDate: "" })
@@ -44,8 +44,8 @@ function Cart(props) {
   })
 
   return (
-    <div>
-      <h2>Cart</h2>
+    <ContainerCartSection>
+      <h2>Carrinho</h2>
       {showCartItems}
       <p>Total: {total.toFixed(2)}</p>
 
@@ -60,7 +60,7 @@ function Cart(props) {
           onChange={onChange} />
         <button >Fazer pedido</button>
       </form>
-    </div>
+    </ContainerCartSection>
   )
 }
 
