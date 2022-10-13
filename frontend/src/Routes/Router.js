@@ -11,15 +11,15 @@ import ProductsPage from '../Pages/ProductsPage/ProductsPage'
 function Router() {
   return (
     <BrowserRouter>
-    <Header/>
-    <Routes>
-        <Route index exact path ="/" element={<Home/>}/>
-        <Route path ="/loginAdmin" element={<AdminLoginPage/>}/>
-        <Route path ="/estoque" element={<AdminPage/>}/>
-        <Route path ="/produtos" element={<ProductsPage/>}/>
-        <Route path ="*" element={<ErrorPage/>}/>
-    </Routes>
-</BrowserRouter>
+      <Header />
+      <Routes>
+        <Route index exact path="/" element={<Home />} />
+        <Route path="/loginAdmin" element={<AdminLoginPage />} />
+        <Route path="/estoque" element={<AdminPage />} />
+        <Route path="/produtos" element={<ProductsPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -1,28 +1,27 @@
-import axios from 'axios'
 import React, { useContext } from 'react'
-import {useProtectedPage} from "../../Hooks/useProtectPage"
-import ProductCardAdminPage from "../../Components/ProductCardAdminPage/ProductCardAdminPage"
+import { useProtectedPage } from "../../Hooks/useProtectPage"
 import GlobalContext from '../../Global/GlobalContext'
+import ProductCard from '../../Components/ProductCard/ProductCard'
+import { ContainerAdminPage, ContainerProducts } from "./AdminPage-styled"
 
 function AdminPage() {
   useProtectedPage()
-  const {  products } = useContext(GlobalContext)
-    
-    const showProductsCard = products?.map((product) => {
-      return (
-          <ProductCardAdminPage
-              key={product.id}
-              product={product}
-          />
-      )
+  const { products } = useContext(GlobalContext)
+
+  const showProductsCard = products?.map((product) => {
+    return (
+      <ProductCard
+        key={product.id}
+        product={product}
+      />
+    )
   })
 
 
   return (
-    <div>
-      <h2>AdminPage</h2>
-      <div>{showProductsCard}</div>
-    </div>
+    <ContainerAdminPage>
+      <ContainerProducts>{showProductsCard}</ContainerProducts>
+    </ContainerAdminPage>
   )
 }
 
