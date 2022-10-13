@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContainerProductCard, ContainerProductCardAdminPage, PriceText } from "./ProductCard-styled"
+import { ContainerProductCard, ContainerProductCardAdminPage, PriceText, ProductUnavailableText } from "./ProductCard-styled"
 import productImg from "../../Assets/product-img.png"
 
 function ProductCard(props) {
@@ -12,7 +12,7 @@ function ProductCard(props) {
         <ContainerProductCard>
           <img src={productImg} alt="imagem de produtos" />
           <p>{product.name.toLowerCase()}</p>
-          <PriceText>R$ {product.price}</PriceText>
+          {product.qty_stock > 0 ?<PriceText>R$ {product.price}</PriceText>: <ProductUnavailableText>Produto Indisponível</ProductUnavailableText> }
           <button onClick={() => addToCart(product)}>Adicionar</button>
         </ContainerProductCard>
       )

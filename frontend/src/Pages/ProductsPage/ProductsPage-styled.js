@@ -43,7 +43,7 @@ export const ContainerProducPage = styled.div`
 
     p{
         font-family: 'Lato', sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     }
 
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {

@@ -62,6 +62,11 @@ export const PriceText = styled.p`
     font-size: larger;
 `
 
+export const ProductUnavailableText = styled.p`
+    color:red;
+    font-size: larger;
+`
+
 export const ContainerProductCardAdminPage = styled.div`
     display: flex;
     flex-direction: column;
