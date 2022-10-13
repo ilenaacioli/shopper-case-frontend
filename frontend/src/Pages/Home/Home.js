@@ -16,7 +16,7 @@ function Home() {
         <button onClick={() => goToProductsPage(navigate)}>Ver produtos</button>
       </TextSection>
       <ImgSection>
-        <img src={shoppingCart}/>
+        <img src={shoppingCart} />
       </ImgSection>
     </ContainerHome>
 

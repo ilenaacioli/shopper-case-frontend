@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const ContainerHeaderHome = styled.div`
+export const ContainerHeader = styled.div`
     max-width: 100vw;
     height: 4rem;
     display: flex;

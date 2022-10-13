@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { BASE_URL } from '../Constants/Urls'
 import GlobalContext from './GlobalContext'
+import Swal from 'sweetalert2'
 
 const GlobalState = (props) => {
     const [products, setProducts] = useState([])
@@ -15,7 +16,11 @@ const GlobalState = (props) => {
                 setLoading(false)
             })
             .catch((err) => {
-                console.log(err)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: err
+                })
                 setLoading(false)
             })
     }, [])

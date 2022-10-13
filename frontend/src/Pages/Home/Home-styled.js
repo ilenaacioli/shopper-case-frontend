@@ -1,14 +1,29 @@
 import styled from "styled-components";
 
+export const ContainerHome = styled.div`
+    min-height: 36.5rem;
+    display: flex;
+    flex-direction: row;
+    background-color: #edfaf6;
+
+    
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+`
+
 export const TextSection = styled.section`
+margin-top: 5rem;
 padding: 3rem;
 h2{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
 p{
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
 
 }
 button {
@@ -27,19 +42,27 @@ button:hover{
     background-color: white;
 }
 
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
 `
 
 export const ImgSection = styled.section`
 img{
     margin-top: 5rem;
     max-width: 25rem;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        margin-top: 1rem;
+        max-width: 10rem;
+    }
 }
 
 `
 
-export const ContainerHome = styled.div`
-    min-height: 35rem;
-    display: flex;
-    flex-direction: row;
-    background-color: #edfaf6;
-`
+
+    
+    

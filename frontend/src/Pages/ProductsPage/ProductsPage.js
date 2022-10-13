@@ -1,42 +1,30 @@
 import React, { useContext } from 'react'
 import Cart from '../../Components/Cart/Cart'
 import ProductCard from '../../Components/ProductCard/ProductCard'
-import axios from "axios"
 import { useEffect, useState } from "react"
-import { BASE_URL } from "../../Constants/Urls"
-import { ContainerProducPage, ContainerProducts, CardDiv } from "./ProductsPage-styled"
+import { ContainerProducPage, ContainerProducts, CardDiv, BasketImg } from "./ProductsPage-styled"
 import shoppingBasket from "../../Assets/shopping-basket.png"
 import GlobalContext from '../../Global/GlobalContext'
 
 
 function ProductsPage() {
-    const { cart, setCart, products, setProducts, loading, setLoading } = useContext(GlobalContext)
+    const { cart, setCart, products, loading } = useContext(GlobalContext)
     const [searchInput, setSearchInput] = useState('')
-    // const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const newCart = JSON.parse(localStorage.getItem("cart"))
-        setCart(newCart)
-      }, [])
+        if (cart.length > 0) {
+            const newCart = JSON.parse(localStorage.getItem("cart"))
+            setCart(newCart)
+        }
+    }, [])
 
-    // useEffect(() => {
-    //     axios.get(`${BASE_URL}/products`)
-    //         .then((res) => {
-    //             setProducts(res.data.products)
-    //             setLoading(false)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //             setLoading(false)
-    //         })
-    // }, [])
 
     const onChangeSearch = (event) => {
         setSearchInput(event.target.value)
     }
 
     const addToCart = (productToAdd) => {
-        const foundIndex = cart.findIndex((productInCart) => {
+        const foundIndex = cart?.findIndex((productInCart) => {
             return productInCart.name === productToAdd.name
         })
 
@@ -100,42 +88,42 @@ function ProductsPage() {
         )
     })
 
-    
-    const showProductsSection = ()=>{
+
+    const showProductsSection = () => {
         if (loading) {
-            return(<p>Página carregando</p>)
-        } else if (showProductsCard.length===0) {
-            return(<p>Produto não encontrado :(</p>)
+            return (<p>Página carregando</p>)
+        } else if (showProductsCard?.length === 0) {
+            return (<p>Produto não encontrado :(</p>)
         } else {
             return (
                 <CardDiv>{showProductsCard}</CardDiv>
-                )
-            }
+            )
         }
-        
-        const showCartSection = () => {
-            if (cart.length === 0) {
-                return (
-                    <div>
-                        <img src={shoppingBasket}/>
-                    </div>
-                )
-            }
-            else {
-                return (<div>
-                    <Cart
-                        cart={cart}
-                        setCart={setCart}
-                        addToCart={addToCart}
-                        removeFromCart={removeFromCart}
-                    />
-                </div>)
-            }
+    }
+
+    const showCartSection = () => {
+        if (cart === null || cart.length === 0) {
+            return (
+                <div>
+                    <BasketImg src={shoppingBasket} />
+                </div>
+            )
         }
-        return (
+        else {
+            return (<div>
+                <Cart
+                    cart={cart}
+                    setCart={setCart}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                />
+            </div>)
+        }
+    }
+    return (
         <ContainerProducPage>
             <ContainerProducts>
-                <input value={searchInput} onChange={onChangeSearch} placeholder="Busca"/>
+                <input value={searchInput} onChange={onChangeSearch} placeholder="Busca" />
                 <div>
                     {showProductsSection()}
                 </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../Constants/Urls";
+import Swal from 'sweetalert2'
 
 export const makeAnOrder = (form, cart) => {
 
@@ -11,10 +12,19 @@ export const makeAnOrder = (form, cart) => {
     }
     axios.post(`${BASE_URL}/orders`, body)
         .then((res) => {
-            console.log(res.data)
+            Swal.fire({
+                icon: 'success',
+                title: 'Pedido feito!',
+                showConfirmButton: false,
+                timer: 3000
+              })
         })
         .catch((err) => {
-            console.log(err.response.data.message)
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.response.data.message
+              })
         })
 
 }
