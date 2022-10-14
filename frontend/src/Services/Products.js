@@ -2,19 +2,13 @@ import axios from "axios";
 import { BASE_URL } from "../Constants/Urls";
 import Swal from 'sweetalert2'
 
-export const makeAnOrder = (form, cart, cleanFields, refreshPage, setRefreshPage) => {
+export const editProduct = (form,cleanFields,refreshPage, setRefreshPage) => {
 
-    const body = {
-        userName: form.userName,
-        deliveryDate: form.deliveryDate,
-        products:
-            cart
-    }
-    axios.post(`${BASE_URL}/orders`, body)
+    axios.put(`${BASE_URL}/products/editProduct`, form)
         .then((res) => {
             Swal.fire({
                 icon: 'success',
-                title: 'Pedido feito!',
+                title: 'Produto atualizado!',
                 showConfirmButton: false,
                 timer: 3000
               })
