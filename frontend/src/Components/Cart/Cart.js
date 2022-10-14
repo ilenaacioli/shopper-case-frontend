@@ -6,10 +6,10 @@ import GlobalContext from '../../Global/GlobalContext'
 
 function Cart(props) {
   const { addToCart, removeFromCart } = props
-  const { cart } = useContext(GlobalContext)
+  const { cart, refreshPage, setRefreshPage } = useContext(GlobalContext)
   const [total, setTotal] = useState(0)
 
-  const { form, onChange } = useForm({ userName: "", deliveryDate: "" })
+  const { form, onChange,cleanFields } = useForm({ userName: "", deliveryDate: "" })
 
   const calculateTotal = () => {
     let total = 0
@@ -28,7 +28,7 @@ function Cart(props) {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    makeAnOrder(form, cart)
+    makeAnOrder(form, cart,cleanFields, refreshPage, setRefreshPage)
   }
 
   const showCartItems = cart?.map((item) => {

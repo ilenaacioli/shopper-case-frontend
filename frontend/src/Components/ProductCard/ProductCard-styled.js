@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerProductCard = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 12.5rem;
+    width: 12.5rem;
     min-height: 13rem;
     align-items: center;
     margin: 10px;

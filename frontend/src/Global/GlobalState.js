@@ -8,6 +8,7 @@ const GlobalState = (props) => {
     const [products, setProducts] = useState([])
     const [cart, setCart] = useState([])
     const [loading, setLoading] = useState(true)
+    const [refreshPage, setRefreshPage] = useState(false)
 
     useEffect(() => {
         axios.get(`${BASE_URL}/products`)
@@ -23,7 +24,7 @@ const GlobalState = (props) => {
                 })
                 setLoading(false)
             })
-    }, [])
+    }, [refreshPage])
 
     const Provider = GlobalContext.Provider
 
@@ -33,7 +34,9 @@ const GlobalState = (props) => {
         products,
         setProducts,
         loading,
-        setLoading
+        setLoading,
+        refreshPage,
+        setRefreshPage
     }
 
     return (
