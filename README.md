@@ -5,7 +5,7 @@
 A proposta do case é a criação de um site de compras, em que o cliente poderá verificar os produtos, adicionar o produto que deseja ao carrinho e fazer sua compra informando o seu nome e a data de entrega.
 
 ### Funcionalidades
-O projeto apresenta 5 telas. A tela principal dá acesso as partes públicas e privadas do site através dos botões: Ver produtos e Área Admin.  Ao clicar em Ver produtos o cliente terá acesso a lista de produtos, onde é possível fazer uma busca do produto que deseja e adicionar o produto ao carrinho. Assim que algum produto for adicionado, o menu do carrinho aparecerá na lateral direita, onde será possível verificar o preço total da compra, adicinar o nome do cliente, a data de entrega e finalizar o pedido. O botão Área Admin levará o usuário a uma tela de login, onde serão informados o email e senha do administrador. A título de teste o email e senha cadastrados serão informados a seguir. Após o login, o administrador poderá verificar a quantidade de produtos em estoque. Para o caso do usuário inserir uma rota inválida na url, existe também uma página de erro, em que será possível voltar para a lista de compras através de um botão 
+O projeto apresenta 5 telas. A tela principal dá acesso as partes públicas e privadas do site através dos botões: Ver produtos e Área Admin.  Ao clicar em Ver produtos o cliente terá acesso a lista de produtos, onde é possível fazer uma busca do produto que deseja e adicionar o produto ao carrinho. Assim que algum produto for adicionado, o menu do carrinho aparecerá na lateral direita, onde será possível verificar o preço total da compra, adicinar o nome do cliente, a data de entrega e finalizar o pedido. O botão Área Admin levará o usuário a uma tela de login, onde serão informados o email e senha do administrador. A título de teste o email e senha cadastrados serão informados a seguir. Após o login, o administrador poderá verificar a quantidade de produtos em estoque, assim como fazer a atualização das informações do produto que deseja. Para o caso do usuário inserir uma rota inválida na url, existe também uma página de erro, em que será possível voltar para a lista de compras através de um botão 
 
 - Login do usuário admin:
 
@@ -55,7 +55,7 @@ link: https://documenter.getpostman.com/view/21552877/2s83ziN3Zu
 ![image](https://user-images.githubusercontent.com/104631728/195866280-74ef6764-e973-4709-a911-551cbb047b28.png)
 
 /estoque
-![image](https://user-images.githubusercontent.com/104631728/195866444-5c4dc2d0-f872-4034-b025-29a067aec089.png)
+![image](https://user-images.githubusercontent.com/104631728/195922078-b8c3e1d7-f3a2-43d7-b7bc-05640b8d3749.png)
 
 /rotainválida
 ![image](https://user-images.githubusercontent.com/104631728/195866617-c0bd4369-5902-422b-b7ce-067c1d5aa473.png)
