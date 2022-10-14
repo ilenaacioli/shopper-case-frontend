@@ -11,6 +11,7 @@ export const ContainerHome = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 37.5rem;
     }
 `
 
@@ -46,7 +47,7 @@ button:hover{
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
     }
 `
 

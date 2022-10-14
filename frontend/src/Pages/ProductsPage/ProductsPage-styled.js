@@ -25,7 +25,7 @@ export const CardDiv = styled.div`
 `
 
 export const BasketImg = styled.img`
-    margin-top: 5rem;
+    margin-top: 4rem;
     margin-left: 3.6rem;
     max-width: 20rem;
 

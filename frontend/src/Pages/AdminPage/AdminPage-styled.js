@@ -6,6 +6,9 @@ background-color: #edfaf6;
 min-height: 36.5rem;
 align-items: center;
 justify-content: center;
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    min-height: 37.6rem;
+    }
 `
 
 export const ContainerProducts = styled.div`

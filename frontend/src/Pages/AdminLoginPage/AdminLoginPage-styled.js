@@ -43,4 +43,9 @@ export const ContainerAdminLoginPage = styled.div`
         border: 1px solid #2da77a ;
         background-color: white;
     }
+
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    min-height: 37.6rem;
+    }
 `
