@@ -14,7 +14,7 @@ senha: qwerty00
 
 ### Utilização
 
-O acesso ao site poderá ser feito através do link: http://ec2-174-129-180-229.compute-1.amazonaws.com:3000/
+O acesso ao site poderá ser feito através do link: http://ec2-174-129-180-229.compute-1.amazonaws.com:3000/  <br/>
 Podendo também ser instalado em sua máquina e utilizado através dos comandos a seguir:
 
 -   `npm install`:
