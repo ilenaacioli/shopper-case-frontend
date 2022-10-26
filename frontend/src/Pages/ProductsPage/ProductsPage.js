@@ -12,8 +12,11 @@ function ProductsPage() {
     const [searchInput, setSearchInput] = useState('')
 
     useEffect(() => {
-        if (cart.length > 0) {
-            const newCart = JSON.parse(localStorage.getItem("cart"))
+        const newCart = JSON.parse(localStorage.getItem("cart"))
+        if (newCart === null) {
+            setCart([])
+        }
+        else if (newCart.length > 0) {
             setCart(newCart)
         }
     }, [])
